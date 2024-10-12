@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+//Longest subarray of sum K(will work for both positive and negative K)
+// a better approach (rather than brute in which we take every possible subarray and sum it up to check and conclude the largest length)
+int largest_subarray(vector <int> v,long long k){
+  map<long long, int> presumMap; // prefix sum map 
+  int length = 0;
+  int len = 0;
+  long long rem = 0;
+  long long sum = 0;
+  for (int i = 0;i<v.size();i++){
+    sum+=v[i];
+    if (sum==k){
+      length = i+1;
+    }
+    if (presumMap.find(sum) == presumMap.end()){
+      presumMap[sum] = i;
+    }
+    rem = sum-k;
+    if (presumMap.find(rem)!=presumMap.end()){
+      len = i - presumMap[rem];
+      length = max(length,len);
+    } 
+  }
+  return length;
+}
+int main(){
+  vector <int> v;
+  int vi;
+  long long k;
+  cin>>k;
+  int n;
+  cin>>n;
+
+  for (int i = 0;i<n;i++){
+    cin>>vi;
+    v.push_back(vi);
+  }
+  cout<<largest_subarray(v,k);
+}
