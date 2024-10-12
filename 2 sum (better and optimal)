@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+//brute is easy
+//better solution using hashing 
+string checktwosum(vector <int> v,int k){
+  map <int,int> mpp;
+  int rem;
+  for (int i = 0;i<v.size();i++){
+    rem = k - v[i];
+    if (mpp.find(rem)!=mpp.end()){
+      return "YES";
+    }
+    mpp[v[i]] = i;
+  }
+  return "NO";
+}
+//Now the optimal one is not that much optimal, only the space complexity reduces, i.e., we can solve it without using any map
+//optimal 
+string read(vector <int> book,int target){
+  int n = book.size();
+  int left = 0,right = n-1;
+  int sum = 0;
+  while (left<right){
+    sum = book[left]+book[right];
+    if (sum==target) return "YES";
+    else if (sum>target){
+      left++;
+    }
+    else if (sum<target){
+      right--;
+    }
+  }
+  return "NO";
+}
