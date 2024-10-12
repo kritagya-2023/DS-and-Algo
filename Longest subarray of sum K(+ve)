@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+#define int long long 
+using namespace std;
+void fastIO(){
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+}
+signed main(){
+  fastIO();
+  int t;
+  cin>>t;
+  cout<<t<<endl;
+}
