@@ -13,10 +13,9 @@ int longestSubarray(vector <int> v,long long k){
     if (sum==k){
       maxlen = max(maxlen,right-left+1);
     }
-    for (int i = left;i<=right;i++){
-      right++;
-      if (right<n) sum +=v[right];
-    }
+    right++;
+    if (right<n) sum +=v[right];
+    
   }
 }
 int main(){
