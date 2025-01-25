@@ -1,5 +1,5 @@
 class Node{
-  public;
+  public:
   int data;
   Node * next;
 
@@ -14,3 +14,10 @@ class Node{
     next = nullptr;
   }
 };
+
+
+
+//How to initialize something 
+//int a = 20;
+//Node * head = new Node(2);
+//to print data, cout<<head->data;
