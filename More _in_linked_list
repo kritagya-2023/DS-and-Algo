@@ -1,0 +1,113 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+void fastIO(){
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+}
+#define lp(i,n) for (ll i = 0;i<n;i++)
+#define rlp(i,n) for (ll i = n-1;i>=0;i--)
+#define all(v) v.begin(),v.end()
+#define pb push_back
+#define yes cout<<"YES\n"
+#define no cout<<"NO\n"
+#define vsort(v) sort(v.begin(),v.end())
+#define rvsort(v) sort(v.begin(),v.end(),greater<ll>())
+#define getv(v) vector <ll> v(n);lp(i,n) cin>>v[i]
+#define debug(x) cerr<<#x<<"="<<endl
+ll power(ll base, ll exp) {
+ll result = 1;
+while (exp > 0) {
+if (exp % 2 == 1) {
+result *= base;
+}
+base *= base;
+exp /= 2;
+}
+return result;
+}
+class Node{
+  public:
+  ll data;
+  Node *next;
+  
+  public:
+  Node(ll data1,Node *next1){
+    data = data1;
+    next = next1;
+  }
+
+  public:
+  Node(ll data1){
+    data = data1;
+    next = nullptr;
+  }
+};
+Node* converttoll(vector <ll> v){
+  Node*head = new Node(v[0]);
+  Node*mover = head;
+  for (ll i = 1;i<v.size();i++){
+    Node * temp = new Node(v[i]);
+    mover->next = temp;
+    mover = temp;
+  }
+  return head;
+}
+Node *deleteHead(vector <ll> v){
+  Node*head = new Node(v[0]);
+  if (head==NULL)return head;
+  Node*temp = head;
+  head = head->next;
+  free(temp); //used to free the memory used to allocate the previous head of the linked list 
+  return head;
+}
+Node *deleteTail(Node* head){
+  Node* temp = head;
+  if (head->next==NULL || head==NULL)return NULL;
+  while (temp->next->next!=NULL){
+    temp = temp->next;
+  }
+  free(temp->next); // frees the memory that was used for the tail of the previously used ll
+  temp->next = nullptr;
+  return head;
+}
+signed main(){
+  ll n;
+  cin>>n;
+  Node *temp = new Node(n);
+  cout<<temp->data<<" "<<temp->next<<endl;
+  vector <ll> v(n);
+  lp(i,n){
+    cin>>v[i];
+  }
+  Node *head = converttoll(v);
+  cout<<head->data<<endl;
+  //traversing a linked list 
+  temp = head;
+  ll lofll = 0;
+  while(temp){
+    cout<<temp->data<<" ";
+    temp = temp->next;
+    lofll++; //length of linked list
+  }
+  cout<<endl;
+  cout<<lofll<<endl;
+  //check if an element is present or not 
+  // taking input for an element;
+  ll inp;
+  cin>>inp;
+  temp = head;
+  ll flg = 0;
+  while (temp){
+    if (temp->data==inp){
+      flg++;
+      break;
+    }
+    temp = temp->next;
+  }
+  if (flg==0)no;
+  else yes;
+  //deletion and insertion in ll 
+  //1. deletion of the head and tail(see the function)
+  //2. deletion of kth element (you can do it now)
+}
